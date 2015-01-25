@@ -157,6 +157,11 @@ class RulesView extends Backbone.View
   publish: (e) =>
     if @rules.length > 0
       @ref.child('published').child(@token).set @rules.toJSON()
+      flash = '<div class="flash-success">
+        <span><strong>Published your rules!</strong> Your site will now begin redirecting traffic</span>
+      </div>'
+      @$el.find('header').after $.parseHTML(flash)
+      window.setTimeout('$(".flash-success").slideUp();', 3000);
 
     e.preventDefault()
 
@@ -230,6 +235,7 @@ class Rules extends Backbone.Firebase.Collection
   model: Rule
 
 ############################################# App
+window.setTimeout('$(".flash-success").slideUp();', 3000);
 app = app || {}
 app.Router = new RedirectYourTrafficRouter()
 Backbone.history.start()

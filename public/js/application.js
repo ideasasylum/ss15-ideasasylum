@@ -249,8 +249,12 @@
     };
 
     RulesView.prototype.publish = function(e) {
+      var flash;
       if (this.rules.length > 0) {
         this.ref.child('published').child(this.token).set(this.rules.toJSON());
+        flash = '<div class="flash-success"> <span><strong>Published your rules!</strong> Your site will now begin redirecting traffic</span> </div>';
+        this.$el.find('header').after($.parseHTML(flash));
+        window.setTimeout('$(".flash-success").slideUp();', 3000);
       }
       return e.preventDefault();
     };
@@ -398,6 +402,8 @@
     return Rules;
 
   })(Backbone.Firebase.Collection);
+
+  window.setTimeout('$(".flash-success").slideUp();', 3000);
 
   app = app || {};
 
