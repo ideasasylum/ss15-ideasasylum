@@ -1,0 +1,6 @@
+{
+  "name": "ss15-ideasasylum",
+  "root": "./",
+  "clean_urls": true,
+  "error_page": "error.html"
+}
