@@ -1,4 +1,5 @@
 # @codekit-prepend "nav.coffee";
+# @codekit-prepend "tabs.coffee";
 
 FIREBASE_URL = "https://resplendent-torch-5273.firebaseio.com"
 
@@ -64,9 +65,12 @@ class RedirectYourTrafficRouter extends Backbone.Router
       # save the user's profile into Firebase so we can list users,
       # use them in Security and Firebase Rules, and show profiles
       if authData
-        user = @ref.child("users").child(authData.uid)
-        unless user
-          @ref.child("users").child(authData.uid).set(authData);
+        user = @ref.child("users").child(authData.uid).once('value', (snapshot) =>
+          unless snapshot.exists()
+            @ref.child("users").child(authData.uid).set(authData);
+            token = Math.random().toString(36).substr(2);
+            @ref.child("users").child(authData.uid).child('script_token').set(token);
+        );
       @navigate 'rules', { trigger: true }
 
 
@@ -84,6 +88,7 @@ class RulesView extends Backbone.View
 
   events:
     "click button#addrule": "add_rule"
+    "click button#publish": "publish"
 
   initialize: () =>
     @rules = new Rules()
@@ -91,22 +96,64 @@ class RulesView extends Backbone.View
     @listenTo @rules, 'sync', @render
     @listenTo @rules, 'add', @render
     @listenTo @rules, 'remove', @render
+    @listenTo @rules, 'add', @validate
+    @listenTo @rules, 'remove', @validate
+    @listenTo @rules, 'sync', @validate
+
+    @fetch_script_token()
+
+  fetch_script_token: () =>
+    ref = new Firebase(FIREBASE_URL)
+    authData = ref.getAuth()
+    snapshot = ref.child("users").child(authData.uid).child('script_token').once('value', (snapshot) =>
+      @token = snapshot.val() if snapshot.exists()
+      console.log 'script token set', @token
+      @render()
+    )
 
   render: () =>
-    @$el.html @template()
+    @$el.html @template(token: @token)
     @rules.each @renderOne, this
+
+    @$el.find(".accordion-tabs-minimal").each (index) ->
+      $(this).children("li").first().children("a").addClass("is-active").next().addClass("is-open").show()
+
+    @$el.find(".accordion-tabs-minimal").on "click", "li > a", (event) ->
+      unless $(this).hasClass("is-active")
+        event.preventDefault()
+        accordionTabs = $(this).closest(".accordion-tabs-minimal")
+        accordionTabs.find(".is-open").removeClass("is-open").hide()
+        $(this).next().toggleClass("is-open").toggle()
+        accordionTabs.find(".is-active").removeClass "is-active"
+        $(this).addClass "is-active"
+      else
+        event.preventDefault()
+      return
+
     this
 
   renderOne: (rule) =>
     view = new RuleView(rule)
     @views.push view
     view.render()
-    @$el.append view.el
+    @$el.find('#rules table tbody').prepend view.el
 
   add_rule: (e) =>
     rule_form = new RuleForm(@rules)
-    @$el.append(rule_form.render().el)
+    @$el.find('#rules').append(rule_form.render().el)
     e.preventDefault()
+
+  publish: (e) =>
+    if @rules.length > 0
+      ref.child('published').child(@token).set @rules.toJSON()
+
+    e.preventDefault()
+
+  validate: (e) =>
+    if @rules.length > 0
+      @$el.find('button#publish').show()
+    else
+      @$el.find('button#publish').hide()
 
 class RuleForm extends Backbone.View
   tag: 'div'
@@ -133,7 +180,7 @@ class RuleForm extends Backbone.View
     e.preventDefault()
 
 class RuleView extends Backbone.View
-  tag: 'div'
+  tagName: 'tr'
   className: 'rule'
   template: _.template( $('#rule-template').html() )
   events:
@@ -148,7 +195,6 @@ class RuleView extends Backbone.View
   remove: (e) =>
     e.preventDefault()
     @rule.destroy()
-
 
 class Rule extends Backbone.Model
   defaults:

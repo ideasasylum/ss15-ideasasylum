@@ -1,0 +1,1 @@
+function loadJSON(e,n){var o="https://resplendent-torch-5273.firebaseio.com/published/",t=new XMLHttpRequest;t.overrideMimeType("application/json"),t.open("GET",o+e+".json",!0),t.onreadystatechange=function(){4===t.readyState&&"200"===t.status&&n(t.responseText)},t.send(null)}loadJSON("rt5w8soip9gxecdi",function(e){console.log(JSON.parse(e))});

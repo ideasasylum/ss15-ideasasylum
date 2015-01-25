@@ -19,6 +19,25 @@
     });
   });
 
+  $(document).ready(function() {
+    $(".accordion-tabs-minimal").each(function(index) {
+      $(this).children("li").first().children("a").addClass("is-active").next().addClass("is-open").show();
+    });
+    $(".accordion-tabs-minimal").on("click", "li > a", function(event) {
+      var accordionTabs;
+      if (!$(this).hasClass("is-active")) {
+        event.preventDefault();
+        accordionTabs = $(this).closest(".accordion-tabs-minimal");
+        accordionTabs.find(".is-open").removeClass("is-open").hide();
+        $(this).next().toggleClass("is-open").toggle();
+        accordionTabs.find(".is-active").removeClass("is-active");
+        $(this).addClass("is-active");
+      } else {
+        event.preventDefault();
+      }
+    });
+  });
+
   FIREBASE_URL = "https://resplendent-torch-5273.firebaseio.com";
 
   RedirectYourTrafficRouter = (function(_super) {
@@ -116,10 +135,16 @@
       } else {
         console.log("Authenticated successfully with payload:", authData);
         if (authData) {
-          user = this.ref.child("users").child(authData.uid);
-          if (!user) {
-            this.ref.child("users").child(authData.uid).set(authData);
-          }
+          user = this.ref.child("users").child(authData.uid).once('value', (function(_this) {
+            return function(snapshot) {
+              var token;
+              if (!snapshot.exists()) {
+                _this.ref.child("users").child(authData.uid).set(authData);
+                token = Math.random().toString(36).substr(2);
+                return _this.ref.child("users").child(authData.uid).child('script_token').set(token);
+              }
+            };
+          })(this));
         }
         return this.navigate('rules', {
           trigger: true
@@ -156,9 +181,12 @@
     __extends(RulesView, _super);
 
     function RulesView() {
+      this.validate = __bind(this.validate, this);
+      this.publish = __bind(this.publish, this);
       this.add_rule = __bind(this.add_rule, this);
       this.renderOne = __bind(this.renderOne, this);
       this.render = __bind(this.render, this);
+      this.fetch_script_token = __bind(this.fetch_script_token, this);
       this.initialize = __bind(this.initialize, this);
       return RulesView.__super__.constructor.apply(this, arguments);
     }
@@ -168,7 +196,8 @@
     RulesView.prototype.template = _.template($('#rules-template').html());
 
     RulesView.prototype.events = {
-      "click button#addrule": "add_rule"
+      "click button#addrule": "add_rule",
+      "click button#publish": "publish"
     };
 
     RulesView.prototype.initialize = function() {
@@ -176,12 +205,49 @@
       this.views = [];
       this.listenTo(this.rules, 'sync', this.render);
       this.listenTo(this.rules, 'add', this.render);
-      return this.listenTo(this.rules, 'remove', this.render);
+      this.listenTo(this.rules, 'remove', this.render);
+      this.listenTo(this.rules, 'add', this.validate);
+      this.listenTo(this.rules, 'remove', this.validate);
+      this.listenTo(this.rules, 'sync', this.validate);
+      return this.fetch_script_token();
+    };
+
+    RulesView.prototype.fetch_script_token = function() {
+      var authData, ref, snapshot;
+      ref = new Firebase(FIREBASE_URL);
+      authData = ref.getAuth();
+      return snapshot = ref.child("users").child(authData.uid).child('script_token').once('value', (function(_this) {
+        return function(snapshot) {
+          if (snapshot.exists()) {
+            _this.token = snapshot.val();
+          }
+          console.log('script token set', _this.token);
+          return _this.render();
+        };
+      })(this));
     };
 
     RulesView.prototype.render = function() {
-      this.$el.html(this.template());
+      this.$el.html(this.template({
+        token: this.token
+      }));
       this.rules.each(this.renderOne, this);
+      this.$el.find(".accordion-tabs-minimal").each(function(index) {
+        return $(this).children("li").first().children("a").addClass("is-active").next().addClass("is-open").show();
+      });
+      this.$el.find(".accordion-tabs-minimal").on("click", "li > a", function(event) {
+        var accordionTabs;
+        if (!$(this).hasClass("is-active")) {
+          event.preventDefault();
+          accordionTabs = $(this).closest(".accordion-tabs-minimal");
+          accordionTabs.find(".is-open").removeClass("is-open").hide();
+          $(this).next().toggleClass("is-open").toggle();
+          accordionTabs.find(".is-active").removeClass("is-active");
+          $(this).addClass("is-active");
+        } else {
+          event.preventDefault();
+        }
+      });
       return this;
     };
 
@@ -190,14 +256,29 @@
       view = new RuleView(rule);
       this.views.push(view);
       view.render();
-      return this.$el.append(view.el);
+      return this.$el.find('#rules table tbody').prepend(view.el);
     };
 
     RulesView.prototype.add_rule = function(e) {
       var rule_form;
       rule_form = new RuleForm(this.rules);
-      this.$el.append(rule_form.render().el);
+      this.$el.find('#rules').append(rule_form.render().el);
       return e.preventDefault();
+    };
+
+    RulesView.prototype.publish = function(e) {
+      if (this.rules.length > 0) {
+        ref.child('published').child(this.token).set(this.rules.toJSON());
+      }
+      return e.preventDefault();
+    };
+
+    RulesView.prototype.validate = function(e) {
+      if (this.rules.length > 0) {
+        return this.$el.find('button#publish').show();
+      } else {
+        return this.$el.find('button#publish').hide();
+      }
     };
 
     return RulesView;
@@ -258,7 +339,7 @@
       return RuleView.__super__.constructor.apply(this, arguments);
     }
 
-    RuleView.prototype.tag = 'div';
+    RuleView.prototype.tagName = 'tr';
 
     RuleView.prototype.className = 'rule';
 

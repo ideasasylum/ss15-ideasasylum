@@ -10,7 +10,15 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="/favicon.ico?v2" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
@@ -26,49 +34,8 @@
         <!-- Add your site or application content here -->
         <div class="container">
 
-<!--         <header class="centered-navigation" role="banner">
-          <div class="centered-navigation-wrapper">
-            <a href="javascript:void(0)" class="mobile-logo">
-              <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="Logo image">
-            </a>
-            <a href="javascript:void(0)" id="js-centered-navigation-mobile-menu" class="centered-navigation-mobile-menu">MENU</a>
-            <nav role="navigation">
-              <ul id="js-centered-navigation-menu" class="centered-navigation-menu show">
-                <li class="nav-link"><a href="javascript:void(0)">Products</a></li>
-                <li class="nav-link"><a href="javascript:void(0)">About Us</a></li>
-                <li class="nav-link"><a href="javascript:void(0)">Contact</a></li>
-                <li class="nav-link logo">
-                  <a href="javascript:void(0)" class="logo">
-                    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="Logo image">
-                  </a>
-                </li>
-                <li class="nav-link"><a href="javascript:void(0)">Testimonials</a></li>
-                <li class="nav-link more"><a href="javascript:void(0)">More</a>
-                  <ul class="submenu">
-                    <li><a href="javascript:void(0)">Submenu Item</a></li>
-                    <li><a href="javascript:void(0)">Another Item</a></li>
-                    <li class="more"><a href="javascript:void(0)">Item with submenu</a>
-                      <ul class="submenu">
-                        <li><a href="javascript:void(0)">Sub-submenu Item</a></li>
-                        <li><a href="javascript:void(0)">Another Item</a></li>
-                      </ul>
-                    </li>
-                    <li class="more"><a href="javascript:void(0)">Another submenu</a>
-                      <ul class="submenu">
-                        <li><a href="javascript:void(0)">Sub-submenu</a></li>
-                        <li><a href="javascript:void(0)">An Item</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-link"><a href="javascript:void(0)">Sign up</a></li>
-              </ul>
-            </nav>
-          </div>
-        </header> -->
-
-
-<!--         <article class="type-system-rounded">
+<!--
+        <article class="type-system-rounded">
           <p class="type">Article Type</p>
           <h1>Article Heading</h1>
           <h2>These override some of the styles specified in the <code>_variables.scss</code> and <code>_typography.scss</code> partials in <a href="//bitters.bourbon.io">Bitters</a>. You can replace the typography variables and the header font specifications in Bitters with these styles. Then you won&rsquo;t need the wrapping class <code>.type-system-name</code>.</h2>
@@ -87,7 +54,55 @@
 
 
         <script type="text/template" id="app-template">
-          Hi, please <a href="#signin" class="signin">Sign in</a>
+          <div class="hero">
+            <div class="hero-inner">
+              <a href="" class="hero-logo"><img src="/apple-touch-icon-76x76.png" alt="Logo Image"></a>
+              <div class="hero-copy">
+                <h1>Redirect Your Traffic</h1>
+                <p>Redirect your visitors without messing about with .htaccess files or bothering your developers</p>
+              </div>
+              <button href="#signin" class="signin">Sign in with Google</buttons>
+            </div>
+          </div>
+
+          <div class="intro-text">
+            <h4>No one welcomes friends into their home with "Welcome, visitor!"</h4>
+            <p>&ellip; and so shouldn't you try to welcome your website visitors a little better? Perhaps direct Hacker News traffic to one page and the NYTimes to another?</p>
+            <p>But redirecting website traffic means getting your web developer on board so they can recite the magical <code>.htaccess</code> incantations</p>
+            <p><strong>No more!</strong></p>
+            <p>RedirectYourTraffic is a simple UI to change how visitor experience your site</p>
+          </div>
+
+          <ul class="bullets">
+            <li class="bullet three-col-bullet">
+              <div class="bullet-icon bullet-icon-1">
+                <img src="/img/fork.png" alt="">
+              </div>
+              <div class="bullet-content">
+                <h2>Redirect visitors for a customised experience</h2>
+                <p>You know as well as I do that personalised pages convert better than generics. What if you could present a special offer to visitors from high-value sites?</p>
+                </div>
+            </li>
+            <li class="bullet three-col-bullet">
+              <div class="bullet-icon bullet-icon-2">
+                <img src="/img/developers.png" alt="">
+              </div>
+              <div class="bullet-content">
+                <h2>No need for developers</h2>
+                <p>Ok, you might need one for the initial installation but updating rules can be done from a simple form.</p>
+              </div>
+            </li>
+            <li class="bullet three-col-bullet">
+              <div class="bullet-icon bullet-icon-3">
+                <img src="/img/quickly.png" alt="">
+              </div>
+              <div class="bullet-content">
+                <h2>Update rules in 1 minute</h2>
+                <p>You can respond quickly to new inbound links and marketing opportunities. No more waiting for your web developer to schedule the changes into their week.</p>
+              </div>
+            </li>
+          </ul>
+
         </script>
 
         <script type="text/template" id="app-template">
@@ -95,32 +110,85 @@
         </script>
 
         <script type="text/template" id="rules-template">
-          <div id="#rules">
-            <h2>Rules</h2>
+          <ul class="accordion-tabs-minimal">
+            <li class="tab-header-and-content">
+              <a href="#" class="tab-link is-active">Rules</a>
+              <div id="rules" class="tab-content">
 
-            <button id="addrule">Add Rule</button>
-          </div>
+                <table class="table-minimal">
+                  <thead>
+                    <tr>
+                      <th>Referrer</th>
+                      <th>Redirect to</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+
+                <button id="addrule">Add Rule</button>
+                <button id="publish">Publish</button>
+              </div>
+            </li>
+            <li class="tab-header-and-content">
+              <a href="#" class="tab-link">Help & Install</a>
+              <div class="tab-content">
+                <h2>How does it work?</h2>
+                <ol>
+                  <li>Install the script on the page you wish to redirect traffic from</li>
+                  <li>Create the rules which specify the which referrers (can be a partial domain) should be redirect and to which page (a full url).</li>
+                  <li>Click Publish!</li>
+                </ol>
+                <p>Now, whenever a visitor is referred to your site from the referrer, they will be redirected to the page of your choosing.</p>
+                <h2>Demonstation</h2>
+                <p>As an example, I've installed RedirectYourTraffic on <a href="http://jamie.ideasasylum.com">my blog</a>. Note that visitors coming from this page will automatically be redirected to the business category of my blog.<p>
+                <h2>Installation</h2>
+                <p>Copy & Paste the following snippet into the <code>head</code> of the page you wish to redirect traffic from:</p>
+                <pre>
+&lt;script&gt;
+window.RedirectYourTraffic = {
+  token: "<%= token %>"
+};
+&lt;/script&gt;
+&lt;script src="http://ss15-ideasasylum.divshot.io/js/redirector-min.js">&lt;/script&gt;
+                </pre>
+                <h2>About</h2>
+                <p>Made by <a href="http://ideasasylum.com">Jamie Lawrence</a> an experiment for the <a href="http://2015.staticshowdown.com" target="_blank">2015 Static Showdown</a></p>
+              </div>
+            </li>
+          </ul>
         </script>
 
         <script type="text/template" id="rule-template">
-          Rule <%= subject %> <%= referrer %> <%= id %> <%= dest %>
-          <button class="remove-rule">Remove</button>
+          <td><%= referrer %></td>
+          <td>
+            <%= dest %>
+            <button class="remove-rule">Remove</button>
+          </td>
         </script>
 
         <script type="text/template" id="rule-form-template">
-          Rule
-          <input name="subject" value="<%= subject %>">
-          <input name="referrer" value="<%= referrer %>">
-          <input name="dest" value="<%= dest %>">
-          <button id="save-rule">Save</button>
+          <input name="subject" value="<%= subject %>" hidden="true">
+          <div class="rule-fields">
+            <div class="field">
+              <label>When visitors arrive from this domain</label>
+              <input name="referrer" value="<%= referrer %>">
+            </div>
+            <div class="field">
+              <label>Send them here (full url)</label>
+              <input name="dest" value="<%= dest %>">
+            </div>
+            <div class="buttons">
+              <button id="save-rule">Save</button>
+            </div>
+          </div>
         </script>
 
-
-        <script src="js/plugins.js"></script>
         <script src="js/libraries.min.js"></script>
         <script src="js/application.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <!--
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -129,5 +197,6 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
+ -->
     </body>
 </html>
