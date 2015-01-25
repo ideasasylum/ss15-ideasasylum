@@ -1,5 +1,3 @@
-# @codekit-prepend "nav.coffee";
-# @codekit-prepend "tabs.coffee";
 
 FIREBASE_URL = "https://resplendent-torch-5273.firebaseio.com"
 

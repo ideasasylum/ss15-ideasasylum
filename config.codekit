@@ -2847,7 +2847,7 @@
 	"\/js\/nav.coffee": {
 		"createSourceMap": 0,
 		"fileType": 32,
-		"ignore": 1,
+		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/nav.coffee",
 		"minifyOutput": 1,
@@ -2893,7 +2893,7 @@
 	"\/js\/tabs.coffee": {
 		"createSourceMap": 0,
 		"fileType": 32,
-		"ignore": 1,
+		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/tabs.coffee",
 		"minifyOutput": 1,

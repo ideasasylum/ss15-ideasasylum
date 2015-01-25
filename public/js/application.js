@@ -5,39 +5,6 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  $(document).ready(function() {
-    var menuToggle;
-    menuToggle = $("#js-mobile-menu").unbind();
-    $("#js-navigation-menu").removeClass("show");
-    menuToggle.on("click", function(e) {
-      e.preventDefault();
-      $("#js-navigation-menu").slideToggle(function() {
-        if ($("#js-navigation-menu").is(":hidden")) {
-          $("#js-navigation-menu").removeAttr("style");
-        }
-      });
-    });
-  });
-
-  $(document).ready(function() {
-    $(".accordion-tabs-minimal").each(function(index) {
-      $(this).children("li").first().children("a").addClass("is-active").next().addClass("is-open").show();
-    });
-    $(".accordion-tabs-minimal").on("click", "li > a", function(event) {
-      var accordionTabs;
-      if (!$(this).hasClass("is-active")) {
-        event.preventDefault();
-        accordionTabs = $(this).closest(".accordion-tabs-minimal");
-        accordionTabs.find(".is-open").removeClass("is-open").hide();
-        $(this).next().toggleClass("is-open").toggle();
-        accordionTabs.find(".is-active").removeClass("is-active");
-        $(this).addClass("is-active");
-      } else {
-        event.preventDefault();
-      }
-    });
-  });
-
   FIREBASE_URL = "https://resplendent-torch-5273.firebaseio.com";
 
   RedirectYourTrafficRouter = (function(_super) {
