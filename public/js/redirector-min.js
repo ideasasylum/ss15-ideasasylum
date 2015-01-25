@@ -18,6 +18,13 @@ if(document.referrer != undefined || document.referrer.length > 0) {
     rules = JSON.parse(resp)
     console.log(rules);
 
+    // Test rules
+    rules.push({referrer: 'ss15-ideasasylum.divshot.io',
+                dest: 'http://ss15-ideasasylum.divshot.io/#success'});
+
+    rules.push({referrer: 'jamies-macbook-air-3.local:5757',
+                dest: 'http://jamies-macbook-air-3.local:5757/#success'});
+
     // for each rule
     rules.forEach(function(rule, index){
       // test the referrer against the domain

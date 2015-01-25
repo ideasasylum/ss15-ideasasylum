@@ -8,6 +8,7 @@ class RedirectYourTrafficRouter extends Backbone.Router
     "signin":  "signin"
     "signout": "signout"
     "rules":   "rules"
+    "success": "success"
     ".*":       "app"
 
   app: () =>
@@ -27,6 +28,9 @@ class RedirectYourTrafficRouter extends Backbone.Router
     @auth = null
     console.log 'signed out'
     @navigate '#', {trigger: true}
+
+  success: () =>
+    @swap_view new SuccessView()
 
   rules: () ->
     if @enforce_authentication()
@@ -83,6 +87,18 @@ class AppView extends Backbone.View
     @stopListening()
     @undelegateEvents()
 
+class SuccessView extends Backbone.View
+  el: '#app'
+  template: _.template( $('#success-template').html() )
+
+  render: () =>
+    @$el.html @template()
+    this
+
+  destroy: () =>
+    @stopListening()
+    @undelegateEvents()
+
 
 class RulesView extends Backbone.View
   el: '#app'
@@ -91,6 +107,7 @@ class RulesView extends Backbone.View
   events:
     "click button#addrule": "add_rule"
     "click button#publish": "publish"
+    "keyup input#test_url": "update_test_link"
 
   initialize: () =>
     @rules = new Rules()
@@ -164,6 +181,10 @@ class RulesView extends Backbone.View
       window.setTimeout('$(".flash-success").slideUp();', 3000);
 
     e.preventDefault()
+
+  update_test_link: (e) =>
+    href = @$el.find('input#test_url').val()
+    @$el.find('a#test_link').attr href: href
 
   validate: (e) =>
     if @rules.length > 0

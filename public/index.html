@@ -151,6 +151,10 @@ window.RedirectYourTraffic = {
 &lt;/script&gt;
 &lt;script src="http://ss15-ideasasylum.divshot.io/js/redirector-min.js">&lt;/script&gt;
                 </pre>
+                <h2>Testing</h2>
+                <p>What is the URL of the page you installed the script on?</p>
+                <input id='test_url' value='' placeholder='The site you installed the script at'>
+                <p>To test that the script is install correctly, <a id="test_link" href="">click here</a> and you should be redirected back to this application</p>
                 <h2>About</h2>
                 <p>Made by <a href="http://ideasasylum.com">Jamie Lawrence</a> as an experiment for the <a href="http://2015.staticshowdown.com" target="_blank">2015 Static Showdown</a></p>
               </div>
@@ -164,6 +168,12 @@ window.RedirectYourTraffic = {
             <%= dest %>
             <button class="remove-rule">Remove</button>
           </td>
+        </script>
+
+        <script type="text/template" id="success-template">
+          <h1>It worked!</h1>
+          <h3>Your site redirected back here using a test rule</h3>
+          <a class="success" href="#rules">Continue</a>
         </script>
 
         <script type="text/template" id="rule-form-template">
