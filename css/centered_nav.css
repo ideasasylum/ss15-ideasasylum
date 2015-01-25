@@ -1,0 +1,77 @@
+/*
+Error: Undefined mixin 'media'.
+        on line 41 of /Users/jamie/projects/ss15-ideasasylum/stylesheets/centered_nav.scss, in `media'
+        from line 41 of /Users/jamie/projects/ss15-ideasasylum/stylesheets/centered_nav.scss
+
+36:       max-height: $centered-navigation-height;
+37:       opacity: .6;
+38:       padding: .8em 0;
+39:     }
+40: 
+41:     @include media($horizontal-bar-mode) {
+42:       display: none;
+43:     }
+44:   }
+45: 
+46:   .centered-navigation-mobile-menu {
+
+Backtrace:
+/Users/jamie/projects/ss15-ideasasylum/stylesheets/centered_nav.scss:41:in `media'
+/Users/jamie/projects/ss15-ideasasylum/stylesheets/centered_nav.scss:41
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:338:in `block in visit_mixin'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:98:in `block in with_mixin'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:115:in `with_frame'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:98:in `with_mixin'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:336:in `visit_mixin'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:79:in `block in with_base'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:115:in `with_frame'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:79:in `with_base'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:420:in `block (2 levels) in visit_rule'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:420:in `map'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:420:in `block in visit_rule'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:418:in `visit_rule'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:79:in `block in with_base'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:115:in `with_frame'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:79:in `with_base'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:420:in `block (2 levels) in visit_rule'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:420:in `map'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:420:in `block in visit_rule'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:418:in `visit_rule'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:79:in `block in with_base'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:115:in `with_frame'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:79:in `with_base'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:52:in `map'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/root_node.rb:36:in `css_tree'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/root_node.rb:20:in `render'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/engine.rb:268:in `render'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/exec/sass_scss.rb:404:in `run'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/exec/sass_scss.rb:62:in `process_result'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/exec/base.rb:52:in `parse'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/lib/sass/exec/base.rb:19:in `parse!'
+/Users/jamie/Downloads/CodeKit.app/Contents/Resources/engines/scss/bin/scss:13:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined mixin 'media'.\A         on line 41 of /Users/jamie/projects/ss15-ideasasylum/stylesheets/centered_nav.scss, in `media'\A         from line 41 of /Users/jamie/projects/ss15-ideasasylum/stylesheets/centered_nav.scss\A \A 36:       max-height: $centered-navigation-height;\A 37:       opacity: .6;\A 38:       padding: .8em 0;\A 39:     }\A 40: \A 41:     @include media($horizontal-bar-mode) {\A 42:       display: none;\A 43:     }\A 44:   }\A 45: \A 46:   .centered-navigation-mobile-menu {"; }

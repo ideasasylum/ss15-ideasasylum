@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/application.css">
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div class="container">
+
+<!--         <header class="centered-navigation" role="banner">
+          <div class="centered-navigation-wrapper">
+            <a href="javascript:void(0)" class="mobile-logo">
+              <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="Logo image">
+            </a>
+            <a href="javascript:void(0)" id="js-centered-navigation-mobile-menu" class="centered-navigation-mobile-menu">MENU</a>
+            <nav role="navigation">
+              <ul id="js-centered-navigation-menu" class="centered-navigation-menu show">
+                <li class="nav-link"><a href="javascript:void(0)">Products</a></li>
+                <li class="nav-link"><a href="javascript:void(0)">About Us</a></li>
+                <li class="nav-link"><a href="javascript:void(0)">Contact</a></li>
+                <li class="nav-link logo">
+                  <a href="javascript:void(0)" class="logo">
+                    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="Logo image">
+                  </a>
+                </li>
+                <li class="nav-link"><a href="javascript:void(0)">Testimonials</a></li>
+                <li class="nav-link more"><a href="javascript:void(0)">More</a>
+                  <ul class="submenu">
+                    <li><a href="javascript:void(0)">Submenu Item</a></li>
+                    <li><a href="javascript:void(0)">Another Item</a></li>
+                    <li class="more"><a href="javascript:void(0)">Item with submenu</a>
+                      <ul class="submenu">
+                        <li><a href="javascript:void(0)">Sub-submenu Item</a></li>
+                        <li><a href="javascript:void(0)">Another Item</a></li>
+                      </ul>
+                    </li>
+                    <li class="more"><a href="javascript:void(0)">Another submenu</a>
+                      <ul class="submenu">
+                        <li><a href="javascript:void(0)">Sub-submenu</a></li>
+                        <li><a href="javascript:void(0)">An Item</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-link"><a href="javascript:void(0)">Sign up</a></li>
+              </ul>
+            </nav>
+          </div>
+        </header> -->
+
+
+<!--         <article class="type-system-rounded">
+          <p class="type">Article Type</p>
+          <h1>Article Heading</h1>
+          <h2>These override some of the styles specified in the <code>_variables.scss</code> and <code>_typography.scss</code> partials in <a href="//bitters.bourbon.io">Bitters</a>. You can replace the typography variables and the header font specifications in Bitters with these styles. Then you won&rsquo;t need the wrapping class <code>.type-system-name</code>.</h2>
+          <p class="date">30 Mar 2014</p>
+          <p><span>Lorem ipsum dolor sit amet</span>, consectetur adipisicing elit. Consequatur a, ullam, voluptatum incidunt neque doloremque vel inventore distinctio laudantium harum</a> illo quam nulla dolor alias iure impedit! Accusamus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, a, ullam, voluptatum incidunt neque porro numquam doloremque vel inventore distinctio laudantium harum illo quam nulla dolor alias iure impedit.
+            <a href="javascript:void(0)" class="read-more">Read More <span>&rsaquo;</span></a>
+          </p>
+          <h3>Subheading lorem</h3>
+          <p><span>Consequatur ullam, voluptatum</span> incidunt neque porro numquam doloremque vel inventore distinctio laudantium harum illo quam nulla dolor alias iure impedit. Accusamus. Consequatur, a, ullam, voluptatum incidunt neque porro numquam doloremque vel inventore distinctio laudantium harum illo quam nulla dolor alias iure impedit! Accusamus.</p>
+          <hr>
+          <p class="author">Author Name</p>
+        </article> -->
+
+        <div id="app"></div>
+        </div>
+
+
+        <script type="text/template" id="app-template">
+          Hi, please <a href="#signin" class="signin">Sign in</a>
+        </script>
+
+        <script type="text/template" id="app-template">
+          <a href="#signout">Sign out</a>
+        </script>
+
+        <script type="text/template" id="rules-template">
+          <div id="#rules">
+            <h2>Rules</h2>
+
+            <button id="addrule">Add Rule</button>
+          </div>
+        </script>
+
+        <script type="text/template" id="rule-template">
+          Rule <%= subject %> <%= referrer %> <%= id %> <%= dest %>
+          <button class="remove-rule">Remove</button>
+        </script>
+
+        <script type="text/template" id="rule-form-template">
+          Rule
+          <input name="subject" value="<%= subject %>">
+          <input name="referrer" value="<%= referrer %>">
+          <input name="dest" value="<%= dest %>">
+          <button id="save-rule">Save</button>
+        </script>
+
+
+        <script src="js/plugins.js"></script>
+        <script src="js/libraries.min.js"></script>
+        <script src="js/application.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
+</html>
