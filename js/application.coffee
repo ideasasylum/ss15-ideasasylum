@@ -47,7 +47,7 @@ class RedirectYourTrafficRouter extends Backbone.Router
     @auth
 
   swap_view: (view) =>
-    @view?.destroy
+    @view?.destroy()
     @view = view
     @view.render()
 
@@ -81,6 +81,11 @@ class AppView extends Backbone.View
     @$el.html @template()
     this
 
+  destroy: () =>
+    @stopListening()
+    @undelegateEvents()
+
+
 class RulesView extends Backbone.View
   el: '#app'
   template: _.template( $('#rules-template').html() )
@@ -91,7 +96,7 @@ class RulesView extends Backbone.View
 
   initialize: () =>
     @rules = new Rules()
-    @views = []
+    @views = _([])
     @listenTo @rules, 'sync', @render
     @listenTo @rules, 'add', @render
     @listenTo @rules, 'remove', @render
@@ -102,15 +107,23 @@ class RulesView extends Backbone.View
     @fetch_script_token()
 
   fetch_script_token: () =>
-    ref = new Firebase(FIREBASE_URL)
-    authData = ref.getAuth()
-    snapshot = ref.child("users").child(authData.uid).child('script_token').once('value', (snapshot) =>
+    @ref = new Firebase(FIREBASE_URL)
+    authData = @ref.getAuth()
+    snapshot = @ref.child("users").child(authData.uid).child('script_token').once('value', (snapshot) =>
       @token = snapshot.val() if snapshot.exists()
       console.log 'script token set', @token
       @render()
     )
 
+  destroy: () =>
+    @stopListening()
+    @views.invoke 'destroy'
+    @undelegateEvents()
+
   render: () =>
+    @views.invoke 'destroy'
+    @views = _([])
+
     @$el.html @template(token: @token)
     @rules.each @renderOne, this
 
@@ -139,12 +152,13 @@ class RulesView extends Backbone.View
 
   add_rule: (e) =>
     rule_form = new RuleForm(@rules)
+    @views.push rule_form
     @$el.find('#rules').append(rule_form.render().el)
     e.preventDefault()
 
   publish: (e) =>
     if @rules.length > 0
-      ref.child('published').child(@token).set @rules.toJSON()
+      @ref.child('published').child(@token).set @rules.toJSON()
 
     e.preventDefault()
 
@@ -178,6 +192,9 @@ class RuleForm extends Backbone.View
     @rules.add @rule.attributes
     e.preventDefault()
 
+  destroy: () ->
+    @stopListening()
+
 class RuleView extends Backbone.View
   tagName: 'tr'
   className: 'rule'
@@ -195,12 +212,17 @@ class RuleView extends Backbone.View
     e.preventDefault()
     @rule.destroy()
 
+  destroy: () ->
+    @stopListening()
+
+############################################ Models
 class Rule extends Backbone.Model
   defaults:
     subject: 'referrer'
     referrer: ''
     dest: ''
 
+############################################ Collection
 class Rules extends Backbone.Firebase.Collection
   url: () ->
     user = new Firebase(FIREBASE_URL).getAuth()
@@ -209,6 +231,7 @@ class Rules extends Backbone.Firebase.Collection
   autoSync: true
   model: Rule
 
+############################################# App
 app = app || {}
 app.Router = new RedirectYourTrafficRouter()
 Backbone.history.start()

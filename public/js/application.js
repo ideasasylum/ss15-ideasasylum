@@ -117,7 +117,7 @@
     RedirectYourTrafficRouter.prototype.swap_view = function(view) {
       var _ref;
       if ((_ref = this.view) != null) {
-        _ref.destroy;
+        _ref.destroy();
       }
       this.view = view;
       return this.view.render();
@@ -159,6 +159,7 @@
     __extends(AppView, _super);
 
     function AppView() {
+      this.destroy = __bind(this.destroy, this);
       this.render = __bind(this.render, this);
       return AppView.__super__.constructor.apply(this, arguments);
     }
@@ -170,6 +171,11 @@
     AppView.prototype.render = function() {
       this.$el.html(this.template());
       return this;
+    };
+
+    AppView.prototype.destroy = function() {
+      this.stopListening();
+      return this.undelegateEvents();
     };
 
     return AppView;
@@ -185,6 +191,7 @@
       this.add_rule = __bind(this.add_rule, this);
       this.renderOne = __bind(this.renderOne, this);
       this.render = __bind(this.render, this);
+      this.destroy = __bind(this.destroy, this);
       this.fetch_script_token = __bind(this.fetch_script_token, this);
       this.initialize = __bind(this.initialize, this);
       return RulesView.__super__.constructor.apply(this, arguments);
@@ -201,7 +208,7 @@
 
     RulesView.prototype.initialize = function() {
       this.rules = new Rules();
-      this.views = [];
+      this.views = _([]);
       this.listenTo(this.rules, 'sync', this.render);
       this.listenTo(this.rules, 'add', this.render);
       this.listenTo(this.rules, 'remove', this.render);
@@ -212,10 +219,10 @@
     };
 
     RulesView.prototype.fetch_script_token = function() {
-      var authData, ref, snapshot;
-      ref = new Firebase(FIREBASE_URL);
-      authData = ref.getAuth();
-      return snapshot = ref.child("users").child(authData.uid).child('script_token').once('value', (function(_this) {
+      var authData, snapshot;
+      this.ref = new Firebase(FIREBASE_URL);
+      authData = this.ref.getAuth();
+      return snapshot = this.ref.child("users").child(authData.uid).child('script_token').once('value', (function(_this) {
         return function(snapshot) {
           if (snapshot.exists()) {
             _this.token = snapshot.val();
@@ -226,7 +233,15 @@
       })(this));
     };
 
+    RulesView.prototype.destroy = function() {
+      this.stopListening();
+      this.views.invoke('destroy');
+      return this.undelegateEvents();
+    };
+
     RulesView.prototype.render = function() {
+      this.views.invoke('destroy');
+      this.views = _([]);
       this.$el.html(this.template({
         token: this.token
       }));
@@ -261,13 +276,14 @@
     RulesView.prototype.add_rule = function(e) {
       var rule_form;
       rule_form = new RuleForm(this.rules);
+      this.views.push(rule_form);
       this.$el.find('#rules').append(rule_form.render().el);
       return e.preventDefault();
     };
 
     RulesView.prototype.publish = function(e) {
       if (this.rules.length > 0) {
-        ref.child('published').child(this.token).set(this.rules.toJSON());
+        this.ref.child('published').child(this.token).set(this.rules.toJSON());
       }
       return e.preventDefault();
     };
@@ -325,6 +341,10 @@
       return e.preventDefault();
     };
 
+    RuleForm.prototype.destroy = function() {
+      return this.stopListening();
+    };
+
     return RuleForm;
 
   })(Backbone.View);
@@ -359,6 +379,10 @@
     RuleView.prototype.remove = function(e) {
       e.preventDefault();
       return this.rule.destroy();
+    };
+
+    RuleView.prototype.destroy = function() {
+      return this.stopListening();
     };
 
     return RuleView;
