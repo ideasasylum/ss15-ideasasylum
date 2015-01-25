@@ -10,7 +10,6 @@ class RedirectYourTrafficRouter extends Backbone.Router
     "signin":  "signin"
     "signout": "signout"
     "rules":   "rules"
-    "search/:query/p:page": "search"
     ".*":       "app"
 
   app: () =>

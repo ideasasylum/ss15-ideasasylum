@@ -46,7 +46,7 @@
                 <h1>Redirect Your Traffic</h1>
                 <p>Redirect your visitors without messing about with .htaccess files or bothering your developers</p>
               </div>
-              <button href="#signin" class="signin">Sign in with Google</buttons>
+              <a href="#signin" class="signin">Sign in with Google</a>
             </div>
           </div>
 
@@ -95,6 +95,24 @@
         </script>
 
         <script type="text/template" id="rules-template">
+          <header class="navigation" role="banner">
+            <div class="navigation-wrapper">
+              <a href="javascript:void(0)" class="logo">
+                <img src="/img/fork.png" alt="RedirectYourTraffic icon">
+              </a>
+
+              <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+              <nav role="navigation">
+                <ul id="js-navigation-menu" class="navigation-menu show">
+                  <li class="nav-link"><a href="#">Redirect Your Traffic</a></li>
+                </ul>
+              </nav>
+              <div class="navigation-tools">
+                <a href="#signout" class="sign-up">Sign out</a>
+              </div>
+            </div>
+          </header>
+
           <ul class="accordion-tabs-minimal">
             <li class="tab-header-and-content">
               <a href="#" class="tab-link is-active">Rules</a>
@@ -138,7 +156,7 @@ window.RedirectYourTraffic = {
 &lt;script src="http://ss15-ideasasylum.divshot.io/js/redirector-min.js">&lt;/script&gt;
                 </pre>
                 <h2>About</h2>
-                <p>Made by <a href="http://ideasasylum.com">Jamie Lawrence</a> an experiment for the <a href="http://2015.staticshowdown.com" target="_blank">2015 Static Showdown</a></p>
+                <p>Made by <a href="http://ideasasylum.com">Jamie Lawrence</a> as an experiment for the <a href="http://2015.staticshowdown.com" target="_blank">2015 Static Showdown</a></p>
               </div>
             </li>
           </ul>

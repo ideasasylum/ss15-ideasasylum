@@ -55,7 +55,7 @@
       }
     }
 
-    button {
+    a.signin {
       @include button(flat, $base-accent-color);
       padding: 0.7em 1em;
     }
