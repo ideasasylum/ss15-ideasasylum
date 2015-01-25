@@ -277,7 +277,6 @@
     };
 
     RuleView.prototype.remove = function(e) {
-      debugger;
       e.preventDefault();
       return this.rule.destroy();
     };

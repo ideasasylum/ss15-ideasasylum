@@ -146,7 +146,6 @@ class RuleView extends Backbone.View
     @$el.html @template(@rule.attributes)
 
   remove: (e) =>
-    debugger
     e.preventDefault()
     @rule.destroy()
 
